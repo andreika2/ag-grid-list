@@ -1,0 +1,15 @@
+.tool-panel {
+  margin: 0.7em;
+  min-width: 15em;
+  mat-card-title {
+    display: flex;
+  }
+}
+.list-items {
+  mat-list-item {
+    margin-top: 1.5em;
+    mat-form-field {
+      width: 10em;
+    }
+  }
+}

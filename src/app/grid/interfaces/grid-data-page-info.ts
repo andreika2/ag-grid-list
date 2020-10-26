@@ -1,2 +1,4 @@
-export interface GridDataPageInfo {
+export interface GridDataPageInfoI {
+  resultsPerPage: number;
+  totalResults: number;
 }

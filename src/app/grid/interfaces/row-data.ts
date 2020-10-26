@@ -1,9 +1,9 @@
-import {YoutoubeVideoThumbnailsDataI} from './youtoube-video';
+import { GridDataVideoItemThumbnailsDataI } from './grid-data-video-item';
 
 export interface RowDataI {
   description: string;
   publishedAt: string;
-  thumbnails: YoutoubeVideoThumbnailsDataI;
+  thumbnails: GridDataVideoItemThumbnailsDataI;
   title: RowDataTitleI;
 }
 

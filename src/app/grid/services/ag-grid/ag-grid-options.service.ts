@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { YoutubeVideoService } from '../../../youtube-video/services/youtube-video/youtube-video.service';
 import { map } from 'rxjs/operators';
 import { RowDataPipe } from '../../pipes/row-data.pipe';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -13,10 +12,11 @@ import { ColDef } from 'ag-grid-community/dist/lib/entities/colDef';
 import { ToolPanelComponent } from '../../components/toolpanel/toolpanel.component';
 import { SideBarDef } from 'ag-grid-community/dist/lib/entities/sideBar';
 import { GetContextMenuItemsParams } from 'ag-grid-community/dist/lib/entities/gridOptions';
-import {HeaderComponentComponent} from '../../components/header-component/header-component.component';
+import { HeaderComponentComponent } from '../../components/header-component/header-component.component';
+import { AgGridDataService } from './ag-grid-data.service';
 
 @Injectable()
-export class AgGridService {
+export class AgGridOptionsService {
 
   public onSelectedRowCount: Subject<number> = new Subject<number>();
   public onGridModeChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -52,7 +52,7 @@ export class AgGridService {
     return this.modules;
   }
 
-  constructor(private youtubeVideoService: YoutubeVideoService,
+  constructor(private agGridDataService: AgGridDataService,
               private rowDataPipe: RowDataPipe) { }
 
   static getCustomToolbar(): SideBarDef {
@@ -71,7 +71,7 @@ export class AgGridService {
   }
 
   public getRowData(): Observable<RowDataI[]> {
-    return this.youtubeVideoService.getFaceData()
+    return this.agGridDataService.getGridFaceData()
       .pipe(
         map(videoListResponse => this.rowDataPipe.transform(videoListResponse.items))
       );
@@ -91,7 +91,7 @@ export class AgGridService {
         sortable: false,
         filter: false,
       },
-      sideBar: AgGridService.getCustomToolbar(),
+      sideBar: AgGridOptionsService.getCustomToolbar(),
       getContextMenuItems: this.getContextMenuItems.bind(this),
       onSelectionChanged: this.onSelectRowChange.bind(this)
     };
