@@ -71,7 +71,7 @@ export class AgGridOptionsService {
   }
 
   public getRowData(): Observable<RowDataI[]> {
-    return this.agGridDataService.getGridFaceData()
+    return this.agGridDataService.getGridDataVideoList()
       .pipe(
         map(videoListResponse => this.rowDataPipe.transform(videoListResponse.items))
       );

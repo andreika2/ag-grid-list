@@ -16,10 +16,6 @@ export class AgGridDataService {
     return this.http.get<GridDataVideoResponseI>(this.BASE_URL, {params: this.defaultParamsList});
   }
 
-  public getGridFaceData(): Observable<GridDataVideoResponseI> {
-    return this.http.get<GridDataVideoResponseI>(`/assets/facedata.json`);
-  }
-
   private initDefaultParamsList(): HttpParams {
     return new HttpParams()
       .append('key', this.apiKey)
